@@ -29,4 +29,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Terminal Animation
+    const terminalContent = document.getElementById('terminal-content');
+    const lines = [
+        "> initializing_human_thought.exe...",
+        "> loading_creativity_modules...",
+        "> status: imperfect",
+        "> status: curious",
+        "> connecting_to_universe...",
+        "> access_granted.",
+        "> welcome_user."
+    ];
+
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+        if (lineIndex < lines.length) {
+            if (charIndex < lines[lineIndex].length) {
+                terminalContent.innerHTML += lines[lineIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeLine, 50); // Typing speed
+            } else {
+                terminalContent.innerHTML += "<br>";
+                lineIndex++;
+                charIndex = 0;
+                setTimeout(typeLine, 300); // Pause between lines
+            }
+        } else {
+            // Loop animation or stop
+            // setTimeout(() => { terminalContent.innerHTML = ""; lineIndex = 0; typeLine(); }, 5000);
+        }
+    }
+
+    typeLine();
 });
