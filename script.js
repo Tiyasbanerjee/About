@@ -240,10 +240,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 .replace(/^# (.*$)/gim, '<h1>$1</h1>')
                 .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
                 .replace(/\*(.*)\*/gim, '<i>$1</i>')
-                .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
-                .replace(/\n\n/gim, '</p><p>')
-                .trim();
-            return `<p>${html}</p>`;
+                .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>');
+
+            return html.split(/\n\n/).map(chunk => {
+                chunk = chunk.trim();
+                if (!chunk) return '';
+                // Don't wrap headers or blockquotes in p tags
+                if (chunk.startsWith('<h') || chunk.startsWith('<blockquote')) return chunk;
+                return `<p>${chunk}</p>`;
+            }).join('');
         }
 
         function initReader(section, readerIndex) {
