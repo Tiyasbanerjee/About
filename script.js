@@ -20,14 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply initial animation styles
     if (orbs[0].el) { // Check if loader elements exist
         orbs.forEach(o => {
-            o.el.style.animationName = 'spin-orbit';
-            o.el.style.animationDuration = `${o.speed}s`;
-            o.el.style.animationTimingFunction = 'linear';
-            o.el.style.animationIterationCount = 'infinite';
+            if (o.el) {
+                o.el.style.animationName = 'spin-orbit';
+                o.el.style.animationDuration = `${o.speed}s`;
+                o.el.style.animationTimingFunction = 'linear';
+                o.el.style.animationIterationCount = 'infinite';
+            }
         });
 
         // Start accelerating after 2 seconds
         setTimeout(accelerate, 2000);
+
+        // Failsafe: Force load site after 8 seconds if something goes wrong
+        setTimeout(() => {
+            if (loaderWrapper.style.display !== 'none') {
+                console.warn("Loader timed out, forcing site load.");
+                triggerSingularity();
+            }
+        }, 8000);
+
     } else {
         // Fallback if loader is missing
         initSite();
