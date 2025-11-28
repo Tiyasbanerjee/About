@@ -513,84 +513,241 @@ body {
         line-height: 1.6;
     }
 
-    .click-hint {
-        bottom: 15px;
-        right: 20px;
-    }
-}
+    .click-hint {}
 
-@media (max-width: 600px) {
-    .landing-section {
-        padding: 0 20px;
-        /* Reduce side padding */
+    @media (max-width: 600px) {
+        .landing-section {
+            height: auto;
+            min-height: 100dvh;
+            padding: clamp(60px, 10vh, 100px) 20px 40px;
+            align-items: center;
+        }
+
+        .landing-container {
+            height: auto;
+            padding: 0;
+            gap: clamp(20px, 4vh, 40px);
+            justify-content: center;
+        }
+
+        .content-section {
+            padding: 60px 15px;
+            /* Reduce padding */
+        }
+
+        .terminal-window {
+            height: auto;
+            /* Let content dictate height, but cap it */
+            max-height: 35vh;
+            /* Never take more than 35% of screen height */
+            min-height: 150px;
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .terminal-body {
+            padding: 10px;
+            /* Reduce padding */
+            font-size: 0.8rem;
+            /* Smaller font for terminal text */
+        }
+
+        .intro-card {
+            padding: 20px;
+        }
+
+        .intro-card h1 {
+            font-size: 1.8rem;
+            /* Smaller title */
+        }
+
+        .intro-card .subtitle {
+            font-size: 1rem;
+        }
+
+        .social-btn {
+            width: 100%;
+            /* Full width buttons on mobile */
+            max-width: 250px;
+            padding: 12px 20px;
+        }
+
+        .philosophy-block {
+            margin-bottom: clamp(40px, 8vh, 80px);
+            /* Fluid spacing between blocks */
+        }
+
+        .block-text h2 {
+            font-size: 1.5rem;
+        }
+
+        /* Reader Mobile Adjustments */
+        .book-container {
+            padding: 15px;
+            height: 70vh;
+            /* Slightly shorter on mobile to fit better */
+        }
+
+        .book-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
     }
 
-    .landing-container {
-        padding: 80px 0 20px 0;
-        /* Increase top padding significantly */
-        gap: 20px;
-        justify-content: flex-start;
-        /* Align to top instead of center if needed */
-    }
-
-    .content-section {
-        padding: 60px 15px;
-        /* Reduce padding */
-    }
-
-    .terminal-window {
-        height: 180px;
-        /* Slightly smaller to fit better */
-        max-width: 100%;
-        margin-bottom: 10px;
-        /* Add some bottom margin */
-    }
-
-    .terminal-body {
-        padding: 10px;
-        /* Reduce padding */
-        font-size: 0.8rem;
-        /* Smaller font for terminal text */
-    }
-
-    .intro-card {
-        padding: 20px;
-    }
-
-    .intro-card h1 {
-        font-size: 1.8rem;
-        /* Smaller title */
-    }
-
-    .intro-card .subtitle {
-        font-size: 1rem;
-    }
-
-    .social-btn {
+    /* --- Loader Styles --- */
+    #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        /* Full width buttons on mobile */
-        max-width: 250px;
-        padding: 12px 20px;
+        height: 100%;
+        background-color: #080808;
+        /* Soft Matte Black */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        color: #d4af37;
+        /* Muted Gold */
+        transition: opacity 1.5s ease;
+        /* Fade out transition */
     }
 
-    .philosophy-block {
-        margin-bottom: 80px;
-        /* Less spacing */
+    /* --- The Liquid Filter Effect --- */
+    .filter-def {
+        position: absolute;
+        width: 0;
+        height: 0;
     }
 
-    .block-text h2 {
-        font-size: 1.5rem;
+    /* The container where the liquid magic happens */
+    .liquid-container {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        filter: url('#goo');
+        /* The Gooey Effect */
+        /* We will control rotation speed via JS */
+        animation: breathe-container 6s ease-in-out infinite;
     }
 
-    /* Reader Mobile Adjustments */
-    .book-container {
-        padding: 15px;
-        height: 70vh;
-        /* Slightly shorter on mobile to fit better */
+    /* --- The Orbs (Ink Drops) --- */
+    .orb {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* Centering */
+        border-radius: 50%;
+        background: #d4af37;
+        opacity: 0.9;
+        mix-blend-mode: screen;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        will-change: transform;
     }
 
-    .book-content {
-        font-size: 0.95rem;
-        line-height: 1.5;
+    /* The Main Core */
+    .orb-main {
+        width: 70px;
+        height: 70px;
+        background: radial-gradient(circle, #fff, #d4af37);
+        z-index: 10;
     }
-}
+
+    /* The Orbiting Drops */
+    #orb-1 {
+        width: 50px;
+        height: 50px;
+    }
+
+    #orb-2 {
+        width: 35px;
+        height: 35px;
+    }
+
+    #orb-3 {
+        width: 25px;
+        height: 25px;
+    }
+
+    /* --- Typography --- */
+    .text-container {
+        margin-top: 60px;
+        text-align: center;
+        z-index: 10;
+        opacity: 0.8;
+        transition: opacity 0.5s;
+    }
+
+    .title {
+        font-size: 1.2rem;
+        letter-spacing: 6px;
+        font-weight: 100;
+        color: #fff;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+        font-style: italic;
+        color: #888;
+        font-family: 'Courier New', monospace;
+    }
+
+    /* --- Animations --- */
+
+    /* Core breathing */
+    @keyframes pulse-core {
+
+        0%,
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        50% {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+    }
+
+    /* Implosion Sequence */
+    @keyframes implode-core {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        40% {
+            transform: translate(-50%, -50%) scale(0.1);
+            background: #fff;
+            box-shadow: 0 0 100px 50px #fff;
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(100);
+            opacity: 0;
+        }
+    }
+
+    /* Simple rotation animation we will speed up */
+    @keyframes spin-orbit {
+        from {
+            transform: rotate(0deg) translateX(var(--dist)) rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg) translateX(var(--dist)) rotate(-360deg);
+        }
+    }
+
+    @keyframes breathe-container {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+    }

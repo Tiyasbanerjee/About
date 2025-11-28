@@ -14,288 +14,318 @@
 
 <body>
 
-    <!-- Background Layers -->
-    <div class="bg-layer" id="bg-starry"></div>
-    <div class="bg-layer" id="bg-socrates"></div>
-    <div class="bg-layer" id="bg-alchemist"></div>
+    <!-- SVG Filter Definition (Hidden) -->
+    <svg class="filter-def">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
 
-    <!-- Landing Section -->
-    <section class="landing-section">
-        <div class="landing-container">
-            <!-- Left: Terminal -->
-            <div class="column left-col">
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
+    <!-- Loader Wrapper -->
+    <div id="loader-wrapper">
+        <div class="liquid-container" id="container">
+            <div class="orb orb-main" id="core"></div>
+            <div class="orb" id="orb-1" style="--dist: 80px;"></div>
+            <div class="orb" id="orb-2" style="--dist: -60px;"></div>
+            <div class="orb" id="orb-3" style="--dist: 90px;"></div>
+        </div>
+
+        <div class="text-container" id="text-box">
+            <div class="title" id="main-text">BECOMING</div>
+            <div class="subtitle" id="sub-text">gathering energy...</div>
+        </div>
+    </div>
+
+    <!-- Main Site Content (Initially Hidden) -->
+    <div id="main-site-content" style="opacity: 0; display: none; transition: opacity 2s ease;">
+        <!-- Background Layers -->
+        <div class="bg-layer" id="bg-starry"></div>
+        <div class="bg-layer" id="bg-socrates"></div>
+        <div class="bg-layer" id="bg-alchemist"></div>
+
+        <!-- Landing Section -->
+        <section class="landing-section">
+            <div class="landing-container">
+                <!-- Left: Terminal -->
+                <div class="column left-col">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="terminal-body" id="terminal-content">
+                            <!-- JS will type text here -->
+                        </div>
                     </div>
-                    <div class="terminal-body" id="terminal-content">
-                        <!-- JS will type text here -->
+                </div>
+
+                <!-- Middle: Intro -->
+                <div class="column middle-col">
+                    <div class="intro-card">
+                        <h1>Human Thought</h1>
+                        <p class="subtitle">Imperfect. Creative. Boundless.</p>
+                        <p class="bio">
+                            Welcome to my digital garden. Here I explore the depths of philosophy,
+                            creativity, and the human condition.
+                        </p>
+                        <div class="scroll-indicator">Scroll to Explore</div>
+                    </div>
+                </div>
+
+                <!-- Right: Socials -->
+                <div class="column right-col">
+                    <div class="social-links">
+                        <a href="#" class="social-btn">GitHub</a>
+                        <a href="#" class="social-btn">Instagram</a>
+                        <a href="#" class="social-btn">LinkedIn</a>
+                        <a href="#" class="social-btn">Facebook</a>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Middle: Intro -->
-            <div class="column middle-col">
-                <div class="intro-card">
-                    <h1>Human Thought</h1>
-                    <p class="subtitle">Imperfect. Creative. Boundless.</p>
-                    <p class="bio">
-                        Welcome to my digital garden. Here I explore the depths of philosophy,
-                        creativity, and the human condition.
+        <!-- Content Section 1 -->
+        <section class="content-section" data-bg="socrates">
+            <div class="philosophy-block">
+                <div class="block-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+1" alt="Philosophy Image 1">
+                </div>
+                <div class="block-text">
+                    <h2>The Unexamined Life</h2>
+                    <p>
+                        "The unexamined life is not worth living." This quote, attributed to Socrates,
+                        reminds us that we must constantly question our purpose, our actions, and the world around us.
+                        It is in the questioning that we find our humanity.
                     </p>
-                    <div class="scroll-indicator">Scroll to Explore</div>
                 </div>
             </div>
-
-            <!-- Right: Socials -->
-            <div class="column right-col">
-                <div class="social-links">
-                    <a href="#" class="social-btn">GitHub</a>
-                    <a href="#" class="social-btn">Instagram</a>
-                    <a href="#" class="social-btn">LinkedIn</a>
-                    <a href="#" class="social-btn">Facebook</a>
+            <div class="philosophy-block reverse">
+                <div class="block-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+2" alt="Philosophy Image 2">
+                </div>
+                <div class="block-text">
+                    <h2>Chaos and Creativity</h2>
+                    <p>
+                        Like the swirling stars of Van Gogh, our minds are a chaotic blend of emotion and logic.
+                        It is not flawless, but it is this very imperfection that drives creativity and innovation.
+                        Embrace the chaos.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Content Section 1 -->
-    <section class="content-section" data-bg="socrates">
-        <div class="philosophy-block">
-            <div class="block-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+1" alt="Philosophy Image 1">
+        <!-- Reader Section 1 -->
+        <section class="reader-section" data-bg="alchemist">
+            <div class="book-container">
+                <div class="book-content">
+                    <p>Loading thought...</p>
+                </div>
+                <div class="page-number">Page 1</div>
+                <div class="click-hint">Click to Turn Page</div>
             </div>
-            <div class="block-text">
-                <h2>The Unexamined Life</h2>
-                <p>
-                    "The unexamined life is not worth living." This quote, attributed to Socrates,
-                    reminds us that we must constantly question our purpose, our actions, and the world around us.
-                    It is in the questioning that we find our humanity.
-                </p>
-            </div>
-        </div>
-        <div class="philosophy-block reverse">
-            <div class="block-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+2" alt="Philosophy Image 2">
-            </div>
-            <div class="block-text">
-                <h2>Chaos and Creativity</h2>
-                <p>
-                    Like the swirling stars of Van Gogh, our minds are a chaotic blend of emotion and logic.
-                    It is not flawless, but it is this very imperfection that drives creativity and innovation.
-                    Embrace the chaos.
-                </p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Reader Section 1 -->
-    <section class="reader-section" data-bg="alchemist">
-        <div class="book-container">
-            <div class="book-content">
-                <p>Loading thought...</p>
+        <!-- Content Section 2 -->
+        <section class="content-section" data-bg="socrates">
+            <div class="philosophy-block">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+3" alt="Philosophy Image 3">
+                </div>
+                <div class="block-text">
+                    <h2>The Void</h2>
+                    <p>
+                        In the silence of the void, we find the loudest truths. It is not in the noise of the world,
+                        but in the quiet introspection that we discover who we truly are.
+                    </p>
+                </div>
             </div>
-            <div class="page-number">Page 1</div>
-            <div class="click-hint">Click to Turn Page</div>
-        </div>
-    </section>
+            <div class="philosophy-block reverse">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+4" alt="Philosophy Image 4">
+                </div>
+                <div class="block-text">
+                    <h2>Time's Arrow</h2>
+                    <p>
+                        Time moves in one direction, a relentless march forward. We cannot go back, only forward.
+                        Make every moment count, for it will never return.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Content Section 2 -->
-    <section class="content-section" data-bg="socrates">
-        <div class="philosophy-block">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+3" alt="Philosophy Image 3">
+        <!-- Reader Section 2 -->
+        <section class="reader-section" data-bg="alchemist">
+            <div class="book-container">
+                <div class="book-content">
+                    <p>Loading thought...</p>
+                </div>
+                <div class="page-number">Page 1</div>
+                <div class="click-hint">Click to Turn Page</div>
             </div>
-            <div class="block-text">
-                <h2>The Void</h2>
-                <p>
-                    In the silence of the void, we find the loudest truths. It is not in the noise of the world,
-                    but in the quiet introspection that we discover who we truly are.
-                </p>
-            </div>
-        </div>
-        <div class="philosophy-block reverse">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+4" alt="Philosophy Image 4">
-            </div>
-            <div class="block-text">
-                <h2>Time's Arrow</h2>
-                <p>
-                    Time moves in one direction, a relentless march forward. We cannot go back, only forward.
-                    Make every moment count, for it will never return.
-                </p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Reader Section 2 -->
-    <section class="reader-section" data-bg="alchemist">
-        <div class="book-container">
-            <div class="book-content">
-                <p>Loading thought...</p>
+        <!-- Content Section 3 -->
+        <section class="content-section" data-bg="socrates">
+            <div class="philosophy-block">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+5" alt="Philosophy Image 5">
+                </div>
+                <div class="block-text">
+                    <h2>The Mask</h2>
+                    <p>
+                        We all wear masks, showing the world what we want them to see. But beneath the mask lies
+                        the raw, unfiltered self. Do not be afraid to let it show.
+                    </p>
+                </div>
             </div>
-            <div class="page-number">Page 1</div>
-            <div class="click-hint">Click to Turn Page</div>
-        </div>
-    </section>
+            <div class="philosophy-block reverse">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+6" alt="Philosophy Image 6">
+                </div>
+                <div class="block-text">
+                    <h2>Echoes of the Past</h2>
+                    <p>
+                        History is not just a record of events, but a collection of lessons. We must learn from
+                        the past to build a better future.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Content Section 3 -->
-    <section class="content-section" data-bg="socrates">
-        <div class="philosophy-block">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+5" alt="Philosophy Image 5">
+        <!-- Reader Section 3 -->
+        <section class="reader-section" data-bg="alchemist">
+            <div class="book-container">
+                <div class="book-content">
+                    <p>Loading thought...</p>
+                </div>
+                <div class="page-number">Page 1</div>
+                <div class="click-hint">Click to Turn Page</div>
             </div>
-            <div class="block-text">
-                <h2>The Mask</h2>
-                <p>
-                    We all wear masks, showing the world what we want them to see. But beneath the mask lies
-                    the raw, unfiltered self. Do not be afraid to let it show.
-                </p>
-            </div>
-        </div>
-        <div class="philosophy-block reverse">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+6" alt="Philosophy Image 6">
-            </div>
-            <div class="block-text">
-                <h2>Echoes of the Past</h2>
-                <p>
-                    History is not just a record of events, but a collection of lessons. We must learn from
-                    the past to build a better future.
-                </p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Reader Section 3 -->
-    <section class="reader-section" data-bg="alchemist">
-        <div class="book-container">
-            <div class="book-content">
-                <p>Loading thought...</p>
+        <!-- Content Section 4 -->
+        <section class="content-section" data-bg="socrates">
+            <div class="philosophy-block">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+7" alt="Philosophy Image 7">
+                </div>
+                <div class="block-text">
+                    <h2>The Digital Soul</h2>
+                    <p>
+                        As we merge with technology, do we lose our humanity or evolve it? The digital realm
+                        offers new ways to connect, but also new ways to isolate.
+                    </p>
+                </div>
             </div>
-            <div class="page-number">Page 1</div>
-            <div class="click-hint">Click to Turn Page</div>
-        </div>
-    </section>
+            <div class="philosophy-block reverse">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+8" alt="Philosophy Image 8">
+                </div>
+                <div class="block-text">
+                    <h2>Nature's Wisdom</h2>
+                    <p>
+                        Look to nature for answers. The trees do not rush, yet they accomplish everything.
+                        Patience is a virtue we have forgotten.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Content Section 4 -->
-    <section class="content-section" data-bg="socrates">
-        <div class="philosophy-block">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+7" alt="Philosophy Image 7">
+        <!-- Reader Section 4 -->
+        <section class="reader-section" data-bg="alchemist">
+            <div class="book-container">
+                <div class="book-content">
+                    <p>Loading thought...</p>
+                </div>
+                <div class="page-number">Page 1</div>
+                <div class="click-hint">Click to Turn Page</div>
             </div>
-            <div class="block-text">
-                <h2>The Digital Soul</h2>
-                <p>
-                    As we merge with technology, do we lose our humanity or evolve it? The digital realm
-                    offers new ways to connect, but also new ways to isolate.
-                </p>
-            </div>
-        </div>
-        <div class="philosophy-block reverse">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+8" alt="Philosophy Image 8">
-            </div>
-            <div class="block-text">
-                <h2>Nature's Wisdom</h2>
-                <p>
-                    Look to nature for answers. The trees do not rush, yet they accomplish everything.
-                    Patience is a virtue we have forgotten.
-                </p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Reader Section 4 -->
-    <section class="reader-section" data-bg="alchemist">
-        <div class="book-container">
-            <div class="book-content">
-                <p>Loading thought...</p>
+        <!-- Content Section 5 -->
+        <section class="content-section" data-bg="socrates">
+            <div class="philosophy-block">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+9" alt="Philosophy Image 9">
+                </div>
+                <div class="block-text">
+                    <h2>The Art of Failure</h2>
+                    <p>
+                        Failure is not the opposite of success, but a stepping stone to it. Embrace your mistakes,
+                        for they are the greatest teachers.
+                    </p>
+                </div>
             </div>
-            <div class="page-number">Page 1</div>
-            <div class="click-hint">Click to Turn Page</div>
-        </div>
-    </section>
+            <div class="philosophy-block reverse">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+10" alt="Philosophy Image 10">
+                </div>
+                <div class="block-text">
+                    <h2>Infinite Possibilities</h2>
+                    <p>
+                        The universe is vast and full of mysteries. Do not limit yourself to what is known.
+                        Explore the unknown and discover the infinite possibilities.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Content Section 5 -->
-    <section class="content-section" data-bg="socrates">
-        <div class="philosophy-block">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+9" alt="Philosophy Image 9">
+        <!-- Reader Section 5 -->
+        <section class="reader-section" data-bg="alchemist">
+            <div class="book-container">
+                <div class="book-content">
+                    <p>Loading thought...</p>
+                </div>
+                <div class="page-number">Page 1</div>
+                <div class="click-hint">Click to Turn Page</div>
             </div>
-            <div class="block-text">
-                <h2>The Art of Failure</h2>
-                <p>
-                    Failure is not the opposite of success, but a stepping stone to it. Embrace your mistakes,
-                    for they are the greatest teachers.
-                </p>
-            </div>
-        </div>
-        <div class="philosophy-block reverse">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+10" alt="Philosophy Image 10">
-            </div>
-            <div class="block-text">
-                <h2>Infinite Possibilities</h2>
-                <p>
-                    The universe is vast and full of mysteries. Do not limit yourself to what is known.
-                    Explore the unknown and discover the infinite possibilities.
-                </p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Reader Section 5 -->
-    <section class="reader-section" data-bg="alchemist">
-        <div class="book-container">
-            <div class="book-content">
-                <p>Loading thought...</p>
+        <!-- Content Section 6 -->
+        <section class="content-section" data-bg="socrates">
+            <div class="philosophy-block">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+11" alt="Philosophy Image 11">
+                </div>
+                <div class="block-text">
+                    <h2>The Mirror</h2>
+                    <p>
+                        The world is a mirror, reflecting back what we project. If you want to change the world,
+                        start by changing yourself.
+                    </p>
+                </div>
             </div>
-            <div class="page-number">Page 1</div>
-            <div class="click-hint">Click to Turn Page</div>
-        </div>
-    </section>
+            <div class="philosophy-block reverse">
+                <div class="block-image bw-image">
+                    <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+12" alt="Philosophy Image 12">
+                </div>
+                <div class="block-text">
+                    <h2>Silence</h2>
+                    <p>
+                        In a world full of noise, silence is a luxury. Cherish the quiet moments, for they
+                        restore the soul.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Content Section 6 -->
-    <section class="content-section" data-bg="socrates">
-        <div class="philosophy-block">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+11" alt="Philosophy Image 11">
+        <!-- Reader Section 6 -->
+        <section class="reader-section" data-bg="alchemist">
+            <div class="book-container">
+                <div class="book-content">
+                    <p>Loading thought...</p>
+                </div>
+                <div class="page-number">Page 1</div>
+                <div class="click-hint">Click to Turn Page</div>
             </div>
-            <div class="block-text">
-                <h2>The Mirror</h2>
-                <p>
-                    The world is a mirror, reflecting back what we project. If you want to change the world,
-                    start by changing yourself.
-                </p>
-            </div>
-        </div>
-        <div class="philosophy-block reverse">
-            <div class="block-image bw-image">
-                <img src="https://placehold.co/600x400/2a2a2a/FFF?text=Thought+12" alt="Philosophy Image 12">
-            </div>
-            <div class="block-text">
-                <h2>Silence</h2>
-                <p>
-                    In a world full of noise, silence is a luxury. Cherish the quiet moments, for they
-                    restore the soul.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reader Section 6 -->
-    <section class="reader-section" data-bg="alchemist">
-        <div class="book-container">
-            <div class="book-content">
-                <p>Loading thought...</p>
-            </div>
-            <div class="page-number">Page 1</div>
-            <div class="click-hint">Click to Turn Page</div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <script src="script.js"></script>
 </body>
