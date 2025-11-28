@@ -1,23 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
     const bgStarry = document.getElementById('bg-starry');
     const bgSocrates = document.getElementById('bg-socrates');
+    const bgAlchemist = document.getElementById('bg-alchemist');
+    const readerSection = document.getElementById('reader-section');
     const blocks = document.querySelectorAll('.philosophy-block');
 
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
 
-        // Background Transition Logic
-        // As we scroll down 1 screen height, fade out starry and fade in socrates
-        const transitionPoint = windowHeight * 0.5; // Start transitioning halfway down the first page
-        let opacity = (scrollY - transitionPoint) / (windowHeight * 0.5);
+        // --- Transition 1: Starry -> Socrates ---
+        // Start transitioning halfway down the first page
+        const transitionPoint1 = windowHeight * 0.5;
+        let socratesOpacity = (scrollY - transitionPoint1) / (windowHeight * 0.5);
 
-        // Clamp opacity between 0 and 1
-        if (opacity < 0) opacity = 0;
-        if (opacity > 1) opacity = 1;
+        // Clamp between 0 and 1
+        if (socratesOpacity < 0) socratesOpacity = 0;
+        if (socratesOpacity > 1) socratesOpacity = 1;
 
-        bgSocrates.style.opacity = opacity;
-        // bgStarry.style.opacity = 1 - opacity; // Optional: fade out starry night if desired, or keep it behind
+        // --- Transition 2: Socrates -> Alchemist ---
+        // Fade in Alchemist as Reader Section enters the viewport
+        let alchemistOpacity = 0;
+        if (readerSection) {
+            const readerTop = readerSection.getBoundingClientRect().top;
+            // readerTop is distance from top of viewport.
+            // When readerTop is windowHeight, it's just starting to enter (opacity 0)
+            // When readerTop is 0, it's fully covering the screen (opacity 1)
+
+            if (readerTop < windowHeight) {
+                alchemistOpacity = 1 - (readerTop / windowHeight);
+                // Accelerate the fade slightly so it's fully visible before the top hits 0
+                alchemistOpacity = alchemistOpacity * 1.5;
+            }
+            if (alchemistOpacity < 0) alchemistOpacity = 0;
+            if (alchemistOpacity > 1) alchemistOpacity = 1;
+        }
+
+        // Apply Opacities
+        // Socrates should fade out as Alchemist fades in
+        if (socratesOpacity > 1 - alchemistOpacity) {
+            socratesOpacity = 1 - alchemistOpacity;
+        }
+
+        bgSocrates.style.opacity = socratesOpacity;
+        bgAlchemist.style.opacity = alchemistOpacity;
+
+        // Optional: Fade out Starry Night
+        // bgStarry.style.opacity = 1 - socratesOpacity; 
 
         // Reveal Blocks on Scroll
         blocks.forEach(block => {
